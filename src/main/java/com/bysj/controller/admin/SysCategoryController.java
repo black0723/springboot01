@@ -22,8 +22,18 @@ public class SysCategoryController {
         return MessageHelper.ok(list);
     }
 
-    @PostMapping("/save")
-    public MessageHelper save(@RequestBody Category category) {
+    @PostMapping("/update")
+    public MessageHelper update(@RequestBody Category category) {
+        boolean b = categoryService.updateById(category);
+        if (b) {
+            return MessageHelper.ok();
+        } else {
+            return MessageHelper.no();
+        }
+    }
+
+    @PostMapping("/add")
+    public MessageHelper add(@RequestBody Category category) {
         boolean b = categoryService.save(category);
         if (b) {
             return MessageHelper.ok();
