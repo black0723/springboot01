@@ -16,7 +16,7 @@ public class SysCategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/getData")
+    @GetMapping("/list")
     public MessageHelper getData(@RequestParam Integer parentId) {
         List<Category> list = categoryService.list(new QueryWrapper<Category>().eq("parentId", parentId));
         return MessageHelper.ok(list);
