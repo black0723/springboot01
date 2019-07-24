@@ -11,7 +11,7 @@ public class MyInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         /*User user = (User) request.getSession().getAttribute("user");
         if (null == user) {
-            response.sendRedirect("toLogin");
+            response.sendRedirect("nonlogin");
             return false;
         }*/
         return true;

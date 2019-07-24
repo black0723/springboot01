@@ -1,6 +1,7 @@
 package com.bysj.config;
 
 import com.bysj.servletcomponent.MyInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -14,11 +15,14 @@ import java.io.IOException;
 @Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
+    @Value("${customize.upload-path}")
+    private String UPLOAD_PATH;  //"D:/upload_files/"
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //配置server虚拟路径，handler为前台访问的目录，locations为files相对应的本地路径
         // eg http://localhost:9099/upload-files/111.jpg
-        registry.addResourceHandler("/upload-files/**").addResourceLocations("file:D:/upload_files/");
+        registry.addResourceHandler("/upload-files/**").addResourceLocations("file:" + UPLOAD_PATH);
         //默认写在后面 eg http://localhost:9099/upload-files/0.jpg
         registry.addResourceHandler("/upload-files/**").addResourceLocations("classpath:/upload_files/");
     }
@@ -28,7 +32,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(new MyInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns("/toLogin", "/login");
+                .addPathPatterns("/admin/**", "/client/cart/**", "/client/order/**")
+                .excludePathPatterns("/login", "/logout", "/register");
     }
 }

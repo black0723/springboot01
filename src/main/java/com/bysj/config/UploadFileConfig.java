@@ -11,10 +11,13 @@ import javax.servlet.MultipartConfigElement;
 @Configuration
 public class UploadFileConfig {
 
+    @Value("${customize.upload-path}")
+    private String UPLOAD_PATH;  //"D:/upload_files/"
+
     @Bean
-    MultipartConfigElement multipartConfigElement(){
+    MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation("D:/upload-files");
+        factory.setLocation(UPLOAD_PATH);
         // 单次请求最大上传文件大小
         factory.setMaxRequestSize(DataSize.ofMegabytes(10));
         return factory.createMultipartConfig();
