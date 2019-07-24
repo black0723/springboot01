@@ -1,6 +1,6 @@
 package com.bysj.config;
 
-import com.bysj.listener.MyListener;
+import com.bysj.servletcomponent.MyListener;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
