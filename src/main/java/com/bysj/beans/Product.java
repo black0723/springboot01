@@ -20,6 +20,15 @@ public class Product {
     private String marker;
     private String remark;
 
+    public Product() {
+
+    }
+
+    public Product(Integer id, String status) {
+        this.id = id;
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }

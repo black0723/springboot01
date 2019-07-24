@@ -28,6 +28,14 @@ public class SysProductController extends BaseController {
     @Autowired
     CategoryService categoryService;
 
+    /**
+     * 获取列表
+     *
+     * @param request
+     * @param title
+     * @param intro
+     * @return
+     */
     @GetMapping("/list")
     public MessageHelper getData(HttpServletRequest request,
                                  @RequestParam(value = "title", required = false) String title,
@@ -43,21 +51,41 @@ public class SysProductController extends BaseController {
         return MessageHelper.ok(page);
     }
 
+    /**
+     * 获取详情
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/detail/{id}")
     public MessageHelper detail(@PathVariable(value = "id") Integer id) {
         String sql = "SELECT * FROM t_product WHERE id = " + id;
         Map<String, Object> one = customizeService.getOne(sql);
         Integer categoryId = (one.get("categoryId") == null ? null : Integer.valueOf(one.get("categoryId").toString()));
         Category category = categoryService.getById(categoryId);
-        if(category != null){
-            if(category.getParentId()==0){
-                one.put("categoryName",category.getCategoryName());
-            }else{
-                one.put("categoryName2",category.getCategoryName());
+        if (category != null) {
+            if (category.getParentId() == 0) {
+                one.put("categoryName", category.getCategoryName());
+            } else {
+                one.put("categoryName2", category.getCategoryName());
                 Category category2 = categoryService.getById(category.getParentId());
-                one.put("categoryName",category2.getCategoryName());
+                one.put("categoryName", category2.getCategoryName());
             }
         }
         return MessageHelper.ok(one);
+    }
+
+    /**
+     * 上架/下架
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    @GetMapping("/updateStatus")
+    public MessageHelper updateStatus(@RequestParam(value = "id") Integer id,
+                                      @RequestParam(value = "status") String status) {
+        productService.updateById(new Product(id, status));
+        return MessageHelper.ok();
     }
 }
