@@ -54,24 +54,37 @@ public class SysProductController extends BaseController {
     /**
      * 获取详情
      *
+     * SELECT * ,
+     * IF(
+     * 	a.parentCategoryId=0,
+     * 	(SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,
+     * 	(SELECT categoryName FROM t_category AS t WHERE t.id = a.parentCategoryId)
+     * ) AS categoryName1,
+     * IF(
+     * 	a.parentCategoryId>0,
+     * 	(SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,
+     * 	NULL
+     * ) AS categoryName2
+     * FROM t_product AS a
+     *
      * @param id
      * @return
      */
     @GetMapping("/detail/{id}")
     public MessageHelper detail(@PathVariable(value = "id") Integer id) {
-        String sql = "SELECT * FROM t_product WHERE id = " + id;
+        String sql = "SELECT * , \n" +
+                "IF(\n" +
+                "\ta.parentCategoryId=0,\n" +
+                "\t(SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,\n" +
+                "\t(SELECT categoryName FROM t_category AS t WHERE t.id = a.parentCategoryId)\n" +
+                ") AS categoryName1,\n" +
+                "IF(\n" +
+                "\ta.parentCategoryId>0,\n" +
+                "\t(SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,\n" +
+                "\tNULL\n" +
+                ") AS categoryName2\n" +
+                "FROM t_product AS a WHERE a.id = " + id;
         Map<String, Object> one = customizeService.getOne(sql);
-        Integer categoryId = (one.get("categoryId") == null ? null : Integer.valueOf(one.get("categoryId").toString()));
-        Category category = categoryService.getById(categoryId);
-        if (category != null) {
-            if (category.getParentId() == 0) {
-                one.put("categoryName", category.getCategoryName());
-            } else {
-                one.put("categoryName2", category.getCategoryName());
-                Category category2 = categoryService.getById(category.getParentId());
-                one.put("categoryName", category2.getCategoryName());
-            }
-        }
         return MessageHelper.ok(one);
     }
 

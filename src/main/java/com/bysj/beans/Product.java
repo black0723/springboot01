@@ -1,6 +1,7 @@
 package com.bysj.beans;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -10,14 +11,14 @@ public class Product {
     private Integer id;
     private String title;
     private Integer categoryId;
+    private Integer parentCategoryId;
     private Integer price;
     private Integer number;
     private String intro;
-    private String imagepath;
+    private String imagepaths;
     private String createdate;
     private Integer userId;
     private String status;
-    private String marker;
     private String remark;
 
     public Product() {
@@ -53,6 +54,14 @@ public class Product {
         this.categoryId = categoryId;
     }
 
+    public Integer getParentCategoryId() {
+        return parentCategoryId;
+    }
+
+    public void setParentCategoryId(Integer parentCategoryId) {
+        this.parentCategoryId = parentCategoryId;
+    }
+
     public Integer getPrice() {
         return price;
     }
@@ -77,12 +86,12 @@ public class Product {
         this.intro = intro;
     }
 
-    public String getImagepath() {
-        return imagepath;
+    public String getImagepaths() {
+        return imagepaths;
     }
 
-    public void setImagepath(String imagepath) {
-        this.imagepath = imagepath;
+    public void setImagepaths(String imagepaths) {
+        this.imagepaths = imagepaths;
     }
 
     public String getCreatedate() {
@@ -107,14 +116,6 @@ public class Product {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getMarker() {
-        return marker;
-    }
-
-    public void setMarker(String marker) {
-        this.marker = marker;
     }
 
     public String getRemark() {
