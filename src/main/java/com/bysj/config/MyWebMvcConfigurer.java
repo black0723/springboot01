@@ -17,9 +17,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //配置server虚拟路径，handler为前台访问的目录，locations为files相对应的本地路径
         // eg http://localhost:9099/upload-files/111.jpg
-        registry.addResourceHandler("/upload-files/**").addResourceLocations("file:" + UPLOAD_PATH);
-        //默认写在后面 eg http://localhost:9099/upload-files/0.jpg
-        registry.addResourceHandler("/upload-files/**").addResourceLocations("classpath:/upload_files/");
+        registry.addResourceHandler("/upload-files/**")
+                .addResourceLocations("classpath:/upload_files/", "file:" + UPLOAD_PATH);
+        //registry.addResourceHandler("/upload-files/**").addResourceLocations();
     }
 
     @Override
