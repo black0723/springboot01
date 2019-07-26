@@ -3,7 +3,6 @@ package com.bysj.controller.admin;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.bysj.beans.Category;
 import com.bysj.beans.Product;
 import com.bysj.controller.BaseController;
 import com.bysj.service.CategoryService;
