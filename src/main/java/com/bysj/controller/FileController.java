@@ -1,17 +1,16 @@
 package com.bysj.controller;
 
+import java.io.File;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.bysj.utils.CommonUtils;
 import com.bysj.utils.FileUtil;
+import com.bysj.utils.MessageHelper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 //文件图片处理类
@@ -24,7 +23,7 @@ public class FileController {
 
     @ResponseBody
     @PostMapping("/upload")
-    public Map<String, Object> upload(@RequestParam("file") MultipartFile file) {
+    public MessageHelper upload(@RequestParam("file") MultipartFile file) {
         Map<String, Object> map = new HashMap<>();
         if (!file.isEmpty()) {
             String originalName = file.getOriginalFilename();
@@ -41,6 +40,16 @@ public class FileController {
                 e.printStackTrace();
             }
         }
-        return map;
+        return MessageHelper.ok(map);
+    }
+
+    @ResponseBody
+    @PostMapping("/delete")
+    public MessageHelper delete(@RequestBody Map<String, String> paramsMap) {
+        File file = new File(UPLOAD_PATH + paramsMap.get("name"));
+        if (file.exists()) {
+            file.delete();
+        }
+        return MessageHelper.ok();
     }
 }

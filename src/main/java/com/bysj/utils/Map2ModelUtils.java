@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * map 转 model
+ *
  * @param <T>
  */
 public class Map2ModelUtils<T> {
@@ -32,7 +33,7 @@ public class Map2ModelUtils<T> {
                 String valueType = getType(map.get(name));
                 switch (type) {
                     case "java.util.Date":
-                        f.set(object, CommonUtils.toDate(map.get(name)));
+                        f.set(object, CommonUtils.toDate(map.get(name) == null ? null : map.get(name).toString()));
                         break;
                     case "java.lang.Integer":
                         if (valueType.equals("java.lang.Integer"))
