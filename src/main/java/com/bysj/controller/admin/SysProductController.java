@@ -52,17 +52,17 @@ public class SysProductController extends BaseController {
 
     /**
      * 获取详情
-     *
+     * <p>
      * SELECT * ,
      * IF(
-     * 	a.parentCategoryId=0,
-     * 	(SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,
-     * 	(SELECT categoryName FROM t_category AS t WHERE t.id = a.parentCategoryId)
+     * a.parentCategoryId=0,
+     * (SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,
+     * (SELECT categoryName FROM t_category AS t WHERE t.id = a.parentCategoryId)
      * ) AS categoryName1,
      * IF(
-     * 	a.parentCategoryId>0,
-     * 	(SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,
-     * 	NULL
+     * a.parentCategoryId>0,
+     * (SELECT categoryName FROM t_category AS t WHERE t.id = a.categoryId) ,
+     * NULL
      * ) AS categoryName2
      * FROM t_product AS a
      *
@@ -99,5 +99,20 @@ public class SysProductController extends BaseController {
                                       @RequestParam(value = "status") String status) {
         productService.updateById(new Product(id, status));
         return MessageHelper.ok();
+    }
+
+    /**
+     * 保存
+     * @param bean
+     * @return
+     */
+    @PostMapping("/save")
+    public MessageHelper update(@RequestBody Product bean) {
+        boolean b = productService.saveOrUpdate(bean);
+        if (b) {
+            return MessageHelper.ok();
+        } else {
+            return MessageHelper.no();
+        }
     }
 }

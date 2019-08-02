@@ -17,14 +17,14 @@ public class SysCategoryController {
     CategoryService categoryService;
 
     @GetMapping("/list")
-    public MessageHelper getData(@RequestParam Integer parentId) {
+    public MessageHelper list(@RequestParam Integer parentId) {
         List<Category> list = categoryService.list(new QueryWrapper<Category>().eq("parentId", parentId));
         return MessageHelper.ok(list);
     }
 
     @PostMapping("/update")
-    public MessageHelper update(@RequestBody Category category) {
-        boolean b = categoryService.updateById(category);
+    public MessageHelper update(@RequestBody Category bean) {
+        boolean b = categoryService.updateById(bean);
         if (b) {
             return MessageHelper.ok();
         } else {
@@ -33,8 +33,8 @@ public class SysCategoryController {
     }
 
     @PostMapping("/add")
-    public MessageHelper add(@RequestBody Category category) {
-        boolean b = categoryService.save(category);
+    public MessageHelper add(@RequestBody Category bean) {
+        boolean b = categoryService.save(bean);
         if (b) {
             return MessageHelper.ok();
         } else {
