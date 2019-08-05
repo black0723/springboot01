@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -28,6 +29,15 @@ public class SysUserController extends BaseController {
     public MessageHelper save(@RequestBody User bean) {
         boolean b = userService.saveOrUpdate(bean);
         if (b) {
+            return MessageHelper.ok();
+        } else {
+            return MessageHelper.no();
+        }
+    }
+
+    @PostMapping("/delete")
+    public MessageHelper delete(@RequestBody Map<String, Integer> paramsMap) {
+        if (userService.removeById(paramsMap.get("userId"))) {
             return MessageHelper.ok();
         } else {
             return MessageHelper.no();
