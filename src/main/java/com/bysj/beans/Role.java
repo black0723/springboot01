@@ -3,6 +3,7 @@ package com.bysj.beans;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.bysj.utils.CommonUtils;
 
 @TableName("t_role")
 public class Role {
@@ -44,7 +45,7 @@ public class Role {
     }
 
     public void setCreateTime(String createTime) {
-        this.createTime = createTime;
+        this.createTime = (createTime == null ? CommonUtils.getNow() : createTime);
     }
 
     public String getAuthTime() {
@@ -52,7 +53,7 @@ public class Role {
     }
 
     public void setAuthTime(String authTime) {
-        this.authTime = authTime;
+        this.authTime = (authTime == null ? CommonUtils.getNow() : authTime);
     }
 
     public String getAuthName() {
