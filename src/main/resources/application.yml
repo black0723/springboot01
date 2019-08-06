@@ -8,7 +8,7 @@ spring:
 server:
   port: 9099
   servlet:
-    context-path: /
+    context-path: /api
     max-http-header-size: 20480
 mybatis-plus:
   configuration:

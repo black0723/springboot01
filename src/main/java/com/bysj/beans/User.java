@@ -33,6 +33,8 @@ public class User implements Serializable {
     private String imagepath;
     private String status;
     private String remark;
+    @TableField(exist = false)
+    private String menus;
 
     //alt+insert 生成 get,set 方法
 
@@ -138,5 +140,13 @@ public class User implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getMenus() {
+        return menus;
+    }
+
+    public void setMenus(String menus) {
+        this.menus = menus;
     }
 }
