@@ -1,4 +1,4 @@
-package com.bysj.utils;
+﻿package com.bysj.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +18,32 @@ import java.util.UUID;
  * @author Administrator
  */
 public class CommonUtils {
+	
+		
+	/**
+     * Date转LocalDate
+     * @param date
+     */
+    public static LocalDate date2LocalDate(Date date) {
+        if(null == date) {
+            return null;
+        }
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 
+	/**
+     * LocalDate转Date
+     * @param localDate
+     * @return
+     */
+    public static Date localDate2Date(LocalDate localDate) {
+        if(null == localDate) {
+            return null;
+        }
+        ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.systemDefault());
+        return Date.from(zonedDateTime.toInstant());
+    }
+	
     /**
      * 获取系统当前日期时间
      *
