@@ -1,13 +1,13 @@
-﻿package com.bysj.utils;
+package com.bysj.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -43,7 +43,7 @@ public class CommonUtils {
         ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.systemDefault());
         return Date.from(zonedDateTime.toInstant());
     }
-	
+
     /**
      * 获取系统当前日期时间
      *
@@ -236,6 +236,33 @@ public class CommonUtils {
         long[] times = {day, hour, min, sec};
         return times;
     }
+
+	/**
+     * 写文件
+     *
+     * @param path
+     * @return
+     */
+	public static void write(String path, String content) {
+		FileWriter fw = null;
+		try {
+			// 如果文件存在，则追加内容；如果文件不存在，则创建文件
+			File f = new File(path);
+			fw = new FileWriter(f, true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		PrintWriter pw = new PrintWriter(fw);
+		pw.println(content);
+		pw.flush();
+		try {
+			fw.flush();
+			pw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
     /**
      * 读文件

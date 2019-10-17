@@ -26,7 +26,8 @@ public class SysAccountController {
     RoleService roleService;
 
     @PostMapping("/login")
-    public MessageHelper doLogin(@RequestBody Map<String, Object> paramsMap, HttpSession session) {
+    public MessageHelper doLogin(@RequestBody Map<String, Object> paramsMap,
+                                 HttpSession session) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda()
                 .eq(User::getUsername, paramsMap.get("username"))
