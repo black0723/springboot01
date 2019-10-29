@@ -1,0 +1,50 @@
+@import 'common-style.less';
+
+body {
+  background: @color-bg;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  height: 18vh;
+  background: @color-content;
+
+  .header-top {
+    background: @color-content;
+    height: 5vh;
+    width: 90%;
+    line-height: 5vh;
+    margin: 0 auto;
+    text-align: right;
+
+    a {
+      color: @color-white;
+    }
+  }
+
+  .header-nav {
+    background: @color-sub;
+    height: 13vh;
+  }
+}
+
+.container {
+  background: @color-info;
+  min-height: 72vh;
+}
+
+.footer {
+  height: 10vh;
+  background: @color-blue;
+  line-height: 10vh;
+  text-align: center;
+
+  a,a:visited,a:link {
+    color: @color-white;
+  }
+  a:hover,a:active {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+}
