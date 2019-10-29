@@ -63,7 +63,8 @@
     <div class="container">
         <div class="fluid_container">
             <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
-                <div th:data-thumb="${#httpServletRequest.getContextPath()}assets/images/slides/thumbs/img1.jpg" data-src="assets/images/slides/img1.jpg">
+
+                <div th:data-thumb="@{/assets/images/slides/thumbs/img1.jpg}" th:data-src="@{/assets/images/slides/img1.jpg}">
                 </div>
                 <div data-thumb="assets/images/slides/thumbs/img2.jpg" data-src="assets/images/slides/img2.jpg">
                 </div>
@@ -318,12 +319,12 @@
 
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script th:src="@{/assets/js/modernizr-latest.js}"></script>
-<script th:src='@{/assets/js/jquery.min.js}'></script>
-<script th:src='@{/assets/js/fancybox/jquery.fancybox.pack.js}'></script>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/fancybox/jquery.fancybox.pack.js}"></script>
 
-<script th:src='@{/assets/js/jquery.mobile.customized.min.js}'></script>
-<script th:src='@{/assets/js/jquery.easing.1.3.js}'></script>
-<script th:src='@{/assets/js/camera.min.js}'></script>
+<script th:src="@{/assets/js/jquery.mobile.customized.min.js}"></script>
+<script th:src="@{/assets/js/jquery.easing.1.3.js}"></script>
+<script th:src="@{/assets/js/camera.min.js}"></script>
 <script th:src="@{/assets/js/bootstrap.min.js}"></script>
 <script th:src="@{/assets/js/custom.js}"></script>
 <script>
