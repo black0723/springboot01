@@ -5,15 +5,68 @@
 </head>
 <body th:fragment="nav-fragment">
 <div class="header-top">
-    <a href="">登录</a>
-    &nbsp;&nbsp;
-    <a href="">注册</a>
+    <div class="left">
+        <h1>
+            神州专车
+        </h1>
+    </div>
+    <div class="center">
+        <form action="">
+            <input type="text" name="searchValue">
+            <input type="submit" value="检索">
+        </form>
+    </div>
+    <div class="right">
+        <span>
+            <a href="">登录</a>&nbsp;|&nbsp;<a href="">注册</a>
+        </span>
+    </div>
 </div>
 <div class="header-nav">
-
+    <div class="header-nav-content">
+        <ul>
+            <li><a href="" class="active">首页</a></li>
+            <li><a href="">首页1</a></li>
+            <li><a href="">首页2</a></li>
+            <li><a href="">首页3</a>
+                <ul>
+                    <li><a href="">首页333</a></li>
+                    <li><a href="">首页</a></li>
+                    <li><a href="">首页</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">首页4</a>
+                <ul>
+                    <li><a href="">首页222222</a></li>
+                    <li><a href="">首页</a></li>
+                    <li><a href="">首页</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="header-banner">
-
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+            <div class="swiper-slide">Slide 10</div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
 </div>
 </body>
 </html>

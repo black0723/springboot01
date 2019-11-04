@@ -19,7 +19,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         // eg http://localhost:9099/upload-files/111.jpg
         registry.addResourceHandler("/upload-files/**")
                 .addResourceLocations("classpath:/upload_files/", "file:" + UPLOAD_PATH);
-        //registry.addResourceHandler("/upload-files/**").addResourceLocations();
+        //第一个方法设置访问路径前缀，第二个方法设置资源路径
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
     @Override
@@ -28,6 +29,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(new MyInterceptor())
                 .addPathPatterns("/admin/**", "/client/cart/**", "/client/order/**")
-                .excludePathPatterns("/login", "/logout", "/register");
+                .excludePathPatterns("/static/**", "/login", "/logout", "/register");
     }
 }
