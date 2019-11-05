@@ -1,208 +1,220 @@
 @import 'common-style.less';
 
-body {
+html,body {
   background: @color-bg;
   height: 100%;
   width: 100%;
   position: relative;
 }
+.box{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-.header {
-  height: 20vh;
+  .header {
+    height: 20%;
 
-  .header-top {
-    height: 12vh;
-    width: 90%;
-    margin: 0 auto;
-
-    div {
-      float: left;
-      width: 33.3333%;
-      overflow: hidden;
-
-      h1 {
-        font-size: 28px;
-        line-height: 12vh;
-        color: @color-success;
-      }
-
-    }
-
-    .right {
-      text-align: right;
-    }
-
-    .left {
-      text-align: left;
-      line-height: 12vh;
-    }
-
-    .center {
-      text-align: center;
-      line-height: 12vh;
-
-      input[type=text] {
-        height: 30px;
-        width: 20em;
-        padding: 0 5px;
-      }
-
-      input[type=submit], input[type=button], button {
-        height: 32px;
-        padding: 0px 15px;
-        cursor: pointer;
-        background: @color-success;
-        color: @color-white;
-        font-weight: bold;
-        border: 0;
-        border: none;
-        margin-left: -6px;
-      }
-    }
-
-    span {
-      background: @color-success;
-      padding: 8px 15px;
-      border-radius: 0px 0 10px 10px;
-    }
-
-    a {
-      color: @color-black;
-      padding: 8px 15px;
-      line-height: 35px;
-    }
-  }
-
-  .header-nav {
-    background: @color-nav;
-    height: 8vh;
-
-    .header-nav-content {
+    .header-top {
+      height: 60%;
       width: 90%;
       margin: 0 auto;
-      height: 100%;
 
-      & > ul {
+      div {
+        float: left;
+        width: 33.3333%;
+        overflow: hidden;
+
+        h1 {
+          font-size: 28px;
+          color: @color-success;
+        }
+
+      }
+
+      .right {
+        text-align: right;
+      }
+
+      .left {
         display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .center {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height: 100%;
 
-        /*直接子元素 & > li*/
-
-        & > li:hover ul {
-          height: auto; /*这个地方固定值才会显示动画，鼠标移上来让二级导航显示*/
+        input[type=text] {
+          height: 30px;
+          width: 20em;
+          padding: 0 5px;
         }
 
-        & > li > a {
-          flex: 0 0 auto;
-          padding: 25px 60px;
+        input[type=submit], input[type=button], button {
+          height: 32px;
+          padding: 0px 15px;
+          cursor: pointer;
+          background: @color-success;
           color: @color-white;
-          line-height: 8vh;
-          font-size: 1.4em;
-          transition: font-weight 200ms; /*200毫秒变化*/
+          font-weight: bold;
+          border: 0;
+          border: none;
+          margin-left: -6px;
+        }
+      }
 
-          &:hover, &:visited, &.active {
-            background: @color-warn;
-            text-shadow: 2px 3px 2px #54ff44;
+      span {
+        background: @color-success;
+        padding: 8px 15px;
+        border-radius: 0px 0 10px 10px;
+      }
 
-            //transform: rotate(45deg);
-            //-webkit-transform: rotate(45deg);
-            //-moz-transform: rotate(45deg);
-            //-o-transform: rotate(45deg);
-            //filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=4.5);
-            //transition: font-size 200ms;
-            //transform: scale(1.1);
-            font-weight: bold;
+      a {
+        color: @color-black;
+        padding: 8px 15px;
+        line-height: 35px;
+      }
+    }
+
+    .header-nav {
+      background: @color-nav;
+      height: 40%;
+
+      .header-nav-content {
+        width: 90%;
+        margin: 0 auto;
+        height: 100%;
+
+        & > ul {
+          display: flex;
+          height: 100%;
+
+          /*直接子元素 & > li*/
+
+          & > li:hover ul {
+            height: auto; /*这个地方固定值才会显示动画，鼠标移上来让二级导航显示*/
           }
 
-          /*接父级元素，编译后效果 ul>li:nth-child(1)*/
-          //&:nth-child(1) {
-          //  padding-left: 0;
-          //}
-          //
-          //&:nth-last-child {
-          //  padding-right: 0;
-          //}
-        }
-
-        ul {
-          flex-direction: column;
-          background: @color-nav;
-          overflow: hidden;
-          z-index: 10;
-          height: 0;
-          /*transition: property duration timing-function delay;*/
-          transition: all 500ms;
-
           & > li > a {
-            flex: 0 0 auto;
-            padding: 5px 20px;
-            width: 100%;
-            display: inline-block;
+            padding: 0px 60px;
             color: @color-white;
-            line-height: 6vh;
+            display: flex;
+            align-items: center;
+            height: 100%;
             font-size: 1.4em;
             transition: font-weight 200ms; /*200毫秒变化*/
 
-            &:hover, &:visited {
+            &:hover, &:visited, &.active {
               background: @color-warn;
               text-shadow: 2px 3px 2px #54ff44;
+
+              //transform: rotate(45deg);
+              //-webkit-transform: rotate(45deg);
+              //-moz-transform: rotate(45deg);
+              //-o-transform: rotate(45deg);
+              //filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=4.5);
+              //transition: font-size 200ms;
+              //transform: scale(1.1);
               font-weight: bold;
             }
+
+            /*接父级元素，编译后效果 ul>li:nth-child(1)*/
+            //&:nth-child(1) {
+            //  padding-left: 0;
+            //}
+            //
+            //&:nth-last-child {
+            //  padding-right: 0;
+            //}
           }
+
+          //ul {
+          //  display: flex;
+          //  flex-direction: column;
+          //  background: @color-nav;
+          //  overflow: hidden;
+          //  z-index: 999;
+          //  height: auto;
+          //  /*transition: property duration timing-function delay;*/
+          //  transition: all 500ms;
+          //
+          //  & > li > a {
+          //    flex: 0 0 auto;
+          //    padding: 5px 20px;
+          //    width: 100%;
+          //    display: inline-block;
+          //    color: @color-white;
+          //    line-height: 6%;
+          //    font-size: 1.4em;
+          //    transition: font-weight 200ms; /*200毫秒变化*/
+          //
+          //    &:hover, &:visited {
+          //      background: @color-warn;
+          //      text-shadow: 2px 3px 2px #54ff44;
+          //      font-weight: bold;
+          //    }
+          //  }
+          //}
         }
+      }
+    }
+
+    .header-banner {
+      height: 200px;
+      background: #f00;
+
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
       }
     }
   }
 
-  .header-banner {
-    height: 200px;
-    background: #f00;
+  .container {
+    background: @color-info;
+    flex: 1;
+  }
 
-    .swiper-container {
-      width: 100%;
-      height: 100%;
+  .footer {
+    height: 10%;
+    background: @color-blue;
+    line-height: 10%;
+    text-align: center;
 
+    a, a:visited, a:link {
+      color: @color-white;
     }
 
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
+    a:hover, a:active {
+      font-weight: bold;
+      font-size: 1.1em;
     }
   }
+
 }
 
-.container {
-  background: @color-info;
-  min-height: 70vh;
-}
-
-.footer {
-  height: 10vh;
-  background: @color-blue;
-  line-height: 10vh;
-  text-align: center;
-
-  a, a:visited, a:link {
-    color: @color-white;
-  }
-
-  a:hover, a:active {
-    font-weight: bold;
-    font-size: 1.1em;
-  }
-}
