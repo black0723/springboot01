@@ -1,46 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="favicon" th:href="@{/images/favicon.png}">
-    <link rel="stylesheet" th:href="@{/swiper/swiper.css}">
-    <link rel="stylesheet/less" th:href="@{/css/customize-style.less}">
-    <script src="https://cdn.bootcss.com/less.js/3.10.3/less.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-    <script th:src="@{/swiper/swiper.js}"></script>
+<head th:include="component/head :: head-fragment">
 </head>
 <body>
 <div class="box">
-    <header class="header" th:include="component/nav :: nav-fragment"></header>
-    <section class="container">
+    <header class="header" th:include="component/header :: header-fragment"></header>
+    <nav class="nav" th:include="component/nav :: nav-fragment"></nav>
+    <section class="swiper" th:include="component/swiper :: swiper-fragment"></section>
+    <section class="content">
         <div id="app">
             {{message}}
         </div>
     </section>
     <footer class="footer" th:include="component/footer :: footer-fragment"></footer>
 </div>
-<!-- Initialize Swiper -->
-<script>
-    var swiper = new Swiper('.swiper-container', {
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
 <script>
     new Vue({
         el: '#app',
